@@ -13,14 +13,19 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 	Texture img;
         Texture turf;
         Sprite player;
+        Sprite turfBack;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("badlogic.jpg");
                 turf = new Texture("turf.jpg");
+                turfBack = new Sprite(turf);
+                turfBack.setScale(0.8f);
+                turfBack.setPosition(-175,-100);
                 player = new Sprite(img);
-                player.setPosition(Gdx.graphics.getWidth()/2, 0);
+                player.setPosition(Gdx.graphics.getWidth()/2-player.getWidth()/2, 0);
+                player.setScale(0.3f);
 	}
 
 	@Override
@@ -28,7 +33,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 		Gdx.gl.glClearColor(0, 0, 1, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
-		batch.draw(turf, 0, 0);
+		turfBack.draw(batch);
                 player.draw(batch);
 		batch.end();
 	}
