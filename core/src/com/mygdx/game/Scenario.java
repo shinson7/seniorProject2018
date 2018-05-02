@@ -17,21 +17,26 @@ public class Scenario {
     public boolean finalVideoPassed = false;
     public boolean finalExplainationPassed = false;
 
+    public String iv;
     public String ie;
     public String o1;
     public String o2;
     public String o3;
     public String o4;
     public int ca;
+    public String fv;
     public String fe;
     
-    public Scenario(String ie, String o1, String o2, String o3, String o4, int ca, String fe) {
+    
+    public Scenario(String iv, String ie, String o1, String o2, String o3, String o4, int ca, String fv, String fe) {
+        this.iv = iv;
         this.ie = ie;
         this.o1 = o1;
         this.o2 = o2;
         this.o3 = o3;
         this.o4 = o4;
         this.ca = ca;
+        this.fv = fv;
         this.fe = fe;
     }
 
