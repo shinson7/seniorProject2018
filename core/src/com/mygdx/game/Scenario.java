@@ -12,10 +12,10 @@ package com.mygdx.game;
 public class Scenario {
 
     public boolean initialVideoPassed = false;
-    public boolean initialExplainationPassed = false;
+    public boolean initialExplanationPassed = false;
     public boolean choicePassed = false;
     public boolean finalVideoPassed = false;
-    public boolean finalExplainationPassed = false;
+    public boolean finalExplanationPassed = false;
 
     public String iv;
     public String ie;
