@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -125,22 +126,42 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
         switch (i) {
             case Keys.NUM_1:
                 if (currentScenario.ca == 1) {
+                    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/correct.mp3"));
+                    sound.play(1.0f);
                     currentScenario.choicePassed = true;
+                } else if (currentScenario.initialExplainationPassed && currentScenario.initialVideoPassed && currentScenario.choicePassed == false) {
+                    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/wrong.mp3"));
+                    sound.play(1.0f);
                 }
                 break;
             case Keys.NUM_2:
                 if (currentScenario.ca == 2) {
+                    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/correct.mp3"));
+                    sound.play(1.0f);
                     currentScenario.choicePassed = true;
+                } else if (currentScenario.initialExplainationPassed && currentScenario.initialVideoPassed && currentScenario.choicePassed == false) {
+                    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/wrong.mp3"));
+                    sound.play(1.0f);
                 }
                 break;
             case Keys.NUM_3:
                 if (currentScenario.ca == 3) {
+                    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/correct.mp3"));
+                    sound.play(1.0f);
                     currentScenario.choicePassed = true;
+                } else if (currentScenario.initialExplainationPassed && currentScenario.initialVideoPassed && currentScenario.choicePassed == false) {
+                    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/wrong.mp3"));
+                    sound.play(1.0f);
                 }
                 break;
             case Keys.NUM_4:
                 if (currentScenario.ca == 4) {
+                    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/correct.mp3"));
+                    sound.play(1.0f);
                     currentScenario.choicePassed = true;
+                } else if (currentScenario.initialExplainationPassed && currentScenario.initialVideoPassed && currentScenario.choicePassed == false) {
+                    Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/wrong.mp3"));
+                    sound.play(1.0f);
                 }
                 break;
             case Keys.ENTER:
