@@ -124,15 +124,15 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
         yScl = (float) Gdx.graphics.getHeight() / 480;
         batch.begin();
         if (animate) {
-            //IGNORE THIS PART ITS BROKEN
-            if (scenarioIndex == 0) {
+        	if (scenarioIndex == 0) {
                 // handler upline.
                 // first we need to have the player move towards the camera
-                /*turfBack.draw(batch);
+                turfBack.draw(batch);
 				player.draw(batch);
 				disc.draw(batch);
 				defender.draw(batch);
-				if (scale > 5) {
+				//IGNORE THIS PART ITS BROKEN
+				/*if (scale > 5) {
 					scale -= .1;
 					player.setSize((orX / scale), (orY / scale));
 					player.setPosition((640 / 2 - player.getWidth() / 2), (480 / 2 - player.getHeight() / 2));
@@ -177,8 +177,72 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
                     thro += 5;
                     disc.setPosition((player.getX() - disc.getWidth() / 2) - thro, (480 / 2 - disc.getHeight() / 2));
                 }
+                else if (huck && thro >= 200 && thro < 500) {
+					//yeet
+					thro+=5;
+				}
+				else if (huck && thro >= 500) {
+					turfBack.setSize(640 * 2, 480 * 2);
+					turfBack.setCenter(640/2, 480/2);
+					defender.setSize(orX/10, orY/10);
+					player.setSize(orX/10, orY/10);
+					disc.setSize(orX2/(10*2), orX2/(10*2));
+					player.setPosition(640 / 2 - player.getWidth() / 2,
+							480 / 2 - player.getHeight() / 2);
+					defender.setPosition(player.getX()+20, player.getY()-20);
+					disc.setPosition(player.getX() - disc.getWidth() / 2, 
+							player.getY()+player.getHeight()/2-disc.getHeight()/2);
+				}
             } else if (scenarioIndex == 2) {
-
+            	turfBack.draw(batch);
+				player.draw(batch);
+				defender.draw(batch);
+				disc.draw(batch);
+				if (angle >= 0 && angle <150) {
+					angle +=3;
+					player.setPosition((640 / 2 - player.getWidth() / 2)+angle, (480 / 2 - player.getHeight() / 2));
+					disc.setPosition(player.getX() +player.getWidth()- disc.getWidth() / 2, 
+							player.getY()+player.getHeight()/2-disc.getHeight()/2);
+					defender.setPosition(player.getX()-(200/scale), player.getY()-(200/scale));
+					turfBack.setCenter(640 / 2 + angle, 480/2);
+					if (angle >= 149) {
+						angle = -1;
+					}
+				}
+				else if (angle > -300) {
+					angle -=5;
+					player.setPosition((640 / 2 - player.getWidth() / 2)+angle+149, (480 / 2 - player.getHeight() / 2));
+					disc.setPosition(player.getX() +player.getWidth()- disc.getWidth() / 2, 
+							player.getY()+player.getHeight()/2-disc.getHeight()/2);
+					defender.setPosition(player.getX()-(200/scale), player.getY()-(200/scale));
+					turfBack.setCenter(640 / 2 +149+ angle, 480/2);
+					if (angle < -200) {
+						huck = true;
+					}
+				}
+				if (huck && thro < 200) {
+					//System.out.println("here");
+					thro+=5;
+					disc.setSize(disc.getWidth()+disc.getWidth()/10, disc.getHeight()+disc.getHeight()/10);
+					disc.setPosition(player.getX() +player.getWidth()- disc.getWidth() / 2 + thro*2, 
+							player.getY()+player.getHeight()/2-disc.getHeight()/2 - thro*2);
+				}
+				else if (huck && thro >= 200 && thro < 500) {
+					//yeet
+					thro+=5;
+				}
+				else if (huck && thro >= 500) {
+					turfBack.setSize(640 * 2, 480 * 2);
+					turfBack.setCenter(640/2, 480/2);
+					defender.setSize(orX/10, orY/10);
+					player.setSize(orX/10, orY/10);
+					disc.setSize(orX2/(10*2), orX2/(10*2));
+					player.setPosition(640 / 2 - player.getWidth() / 2,
+							480 / 2 - player.getHeight() / 2);
+					defender.setPosition(player.getX()-20, player.getY()-20);
+					disc.setPosition(player.getX() +player.getWidth()- disc.getWidth() / 2, 
+							player.getY()+player.getHeight()/2-disc.getHeight()/2);
+				}
             }
             batch.end();
             render.begin(ShapeType.Filled);
@@ -245,6 +309,8 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
                 scale = 10;
                 angle = 0;
                 thro = 0;
+                turfBack.setSize(640 * 2, 480 * 2);
+                turfBack.setCenter(640 / 2, 480 / 2);
                 defender.setSize(orX / scale, orY / scale);
                 player.setSize(orX / scale, orY / scale);
                 player.setPosition(640 / 2 - player.getWidth() / 2,
@@ -253,6 +319,12 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
                 disc.setSize(orX2 / (scale * 2), orX2 / (scale * 2));
                 disc.setPosition(player.getX() - disc.getWidth() / 2, player.getY() + player.getHeight() / 2 - disc.getHeight() / 2);
             } else if (scenarioIndex == 1) {
+            	scale = 10;
+				angle = 0;
+				thro = 0;
+				huck = false;
+            	turfBack.setSize(640 * 2, 480 * 2);
+            	turfBack.setCenter(640 / 2, 480 / 2);
                 defender.setSize(orX / scale, orY / scale);
                 player.setSize(orX / scale, orY / scale);
                 disc.setSize(orX2 / (scale * 2), orX2 / (scale * 2));
@@ -262,14 +334,19 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
                 disc.setPosition(player.getX() - disc.getWidth() / 2,
                         player.getY() + player.getHeight() / 2 - disc.getHeight() / 2);
             } else if (scenarioIndex == 2) {
-                defender.setSize(orX / scale, orY / scale);
-                player.setSize(orX / scale, orY / scale);
-                disc.setSize(orX2 / (scale * 2), orX2 / (scale * 2));
-                player.setPosition(640 / 2 - player.getWidth() / 2,
-                        480 / 2 - player.getHeight() / 2);
-                defender.setPosition(player.getX() - 20, player.getY() - 20);
-                disc.setPosition(player.getX() + player.getWidth() - disc.getWidth() / 2,
-                        player.getY() + player.getHeight() / 2 - disc.getHeight() / 2);
+            	angle = 0;
+				thro = 0;
+				huck = false;
+				turfBack.setSize(640 * 2, 480 * 2);
+				turfBack.setCenter(640 / 2, 480 / 2);
+				defender.setSize(orX/scale, orY/scale);
+				player.setSize(orX/scale, orY/scale);
+				disc.setSize(orX2/(scale*2), orX2/(scale*2));
+				player.setPosition(640 / 2 - player.getWidth() / 2,
+						480 / 2 - player.getHeight() / 2);
+				defender.setPosition(player.getX()-20, player.getY()-20);
+				disc.setPosition(player.getX() +player.getWidth()- disc.getWidth() / 2, 
+						player.getY()+player.getHeight()/2-disc.getHeight()/2);
             }
             //END ANIMATION BLOCK ENTER BOOLEAN CHAIN TO DECIDE DEPLOYMENT ORDER
             
