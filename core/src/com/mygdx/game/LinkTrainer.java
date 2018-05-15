@@ -61,7 +61,6 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
     public float thro = 10;
 
     // scenario 2
-    public float sideline = 250;
     public boolean huck = false;
 
     // disc obj
@@ -171,7 +170,6 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
                     disc.setPosition((player.getX() - disc.getWidth() / 2), (480 / 2 - disc.getHeight() / 2));
                     defender.setPosition(player.getX() + (200 / scale), player.getY() - (200 / scale));
                     turfBack.setCenter(640 / 2 - angle / 2, 480 / 2);
-                    sideline = 250 - angle;
                 }
                 if (huck && thro < 200) {
                     thro += 5;
@@ -248,7 +246,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
             render.begin(ShapeType.Filled);
             if (scenarioIndex == 1) {
                 render.setColor(1, 0, 0, 1);
-                render.rect(sideline, 130, 5, 98);
+                render.rect(player.getX()-200/scale, 130, 5, 98);
             }
             if (scenarioIndex == 2) {
                 render.setColor(1, 0, 0, 1);
@@ -281,7 +279,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
             render.begin(ShapeType.Filled);
             if (scenarioIndex == 1) {
                 render.setColor(1, 0, 0, 1);
-                render.rect(sideline, 130, 5, 98);
+                render.rect(player.getX()-200/scale, 130, 5, 98);
             }
             if (scenarioIndex == 2) {
                 render.setColor(1, 0, 0, 1);
