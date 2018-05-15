@@ -53,12 +53,16 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 	// original x and y of disc
 	public float orX2;
 	public float orY2;
+	// original x and y of field
+	public float orX3;
+	public float orY3;
 	// determines how far over to move player
 	public float angle = 0;
 	public float thro = 10;
 
 	// scenario 2
 	public float sideline = 250;
+	public boolean huck = false;
 
 	// disc obj
 	Texture frisbee;
@@ -82,10 +86,12 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 
 		turf = new Texture("images/Background.png");
 		turfBack = new Sprite(turf);
+		orX3 = turfBack.getWidth()*scale;
+		orY3 = turfBack.getHeight()*scale;
 		// turfBack.setScale(0.125f);
 		// turfBack.setPosition(-2275, -1400);
 		turfBack.setSize(640 * 2, 480 * 2);
-		turfBack.setPosition(-640 / 2, -480 / 2 + 100);
+		turfBack.setPosition(-640 / 2, -480 / 2);
 
 		defender = new Sprite(img2);
 		defender.setSize(defender.getWidth() / scale, defender.getHeight() / scale);
@@ -122,7 +128,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 			if (scenarioIndex == 0) {
 				// handler upline.
 				// first we need to have the player move towards the camera
-				turfBack.draw(batch);
+				/*turfBack.draw(batch);
 				player.draw(batch);
 				disc.draw(batch);
 				defender.draw(batch);
@@ -141,9 +147,38 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 					scale -= .1;
 					disc.setPosition(disc.getX() - thro, disc.getY() - thro);
 					disc.setSize(orX2 / scale, orY2 / scale);
-				}
+				}*/
 			} else if (scenarioIndex == 1) {
-
+				turfBack.draw(batch);
+				player.draw(batch);
+				disc.draw(batch);
+				defender.draw(batch);
+				if (scale > 6) {
+					scale -= .05;
+					player.setSize((orX / scale), (orY / scale));
+					player.setPosition((640 / 2 - player.getWidth() / 2), (480 / 2 - player.getHeight() / 2));
+					disc.setSize((orX2 / (scale * 2)), (orY2 / (scale * 2)));
+					disc.setPosition((player.getX() - disc.getWidth() / 2), (480 / 2 - disc.getHeight() / 2));
+					defender.setSize((orX/scale), (orY/scale));
+					defender.setPosition(player.getX()+(200/scale), player.getY()-(200/scale));
+					turfBack.setSize(orX3/scale,orY3/scale);
+					turfBack.setCenter(640 / 2, 480/2);
+				}
+				else if (angle < 400) {
+					angle +=5;
+					if (angle == 120) {
+						huck = true;
+					}
+					player.setPosition((640 / 2 - player.getWidth() / 2)-angle, (480 / 2 - player.getHeight() / 2));
+					disc.setPosition((player.getX() - disc.getWidth() / 2), (480 / 2 - disc.getHeight() / 2));
+					defender.setPosition(player.getX()+(200/scale), player.getY()-(200/scale));
+					turfBack.setCenter(640 / 2 - angle/2, 480/2);
+					sideline=250-angle;
+				}
+				if (huck && thro < 200) {
+					thro +=5;
+					disc.setPosition((player.getX() - disc.getWidth() / 2) - thro, (480 / 2 - disc.getHeight() / 2));
+				}	
 			} else if (scenarioIndex == 2) {
 
 			}
@@ -151,7 +186,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 			render.begin(ShapeType.Filled);
 			if (scenarioIndex == 1) {
 				render.setColor(1, 0, 0, 1);
-				render.rect(sideline, 130, 5, 80);
+				render.rect(sideline, 130, 5, 98);
 			}
 			if (scenarioIndex == 2) {
 				render.setColor(1, 0, 0, 1);
@@ -185,7 +220,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 			render.begin(ShapeType.Filled);
 			if (scenarioIndex == 1) {
 				render.setColor(1, 0, 0, 1);
-				render.rect(sideline, 130, 5, 80);
+				render.rect(sideline, 130, 5, 98);
 			}
 			if (scenarioIndex == 2) {
 				render.setColor(1, 0, 0, 1);
@@ -207,6 +242,8 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 
 		// boolean chain to determine what gets shown
 		if (currentScenario.initialExplainationPassed == false && prefaceDone) {
+			//kill previous animation
+			animate = false;
 			// set up animation
 			if (scenarioIndex == 0) {
 				scale = 10;
@@ -267,6 +304,8 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 			font.getData().setScale(.5f);
 		} else if (currentScenario.initialExplainationPassed && currentScenario.choicePassed
 				&& currentScenario.finalExplaination1Passed == false && dn == false) {
+			//trigger animation, if there is one
+			animate = true;
 			// show fe1
 			font.draw(batch, currentScenario.fe1 + " Please press ENTER to find out why the other options were wrong.",
 					125, 100, 400, 10, true);
