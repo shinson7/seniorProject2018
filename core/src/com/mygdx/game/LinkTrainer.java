@@ -208,7 +208,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 		// boolean chain to determine what gets shown
 		if (currentScenario.initialExplainationPassed == false && prefaceDone) {
 			// set up animation
-			if (scenarioIndex == 1) {
+			if (scenarioIndex == 0) {
 				scale = 10;
 				angle = 0;
 				thro = 0;
@@ -220,7 +220,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 				disc.setSize(orX2/(scale*2), orX2/(scale*2));
 				disc.setPosition(player.getX() - disc.getWidth() / 2, player.getY()+player.getHeight()/2-disc.getHeight()/2);
 			}
-			else if (scenarioIndex ==2) {
+			else if (scenarioIndex ==1) {
 				defender.setSize(orX/scale, orY/scale);
 				player.setSize(orX/scale, orY/scale);
 				disc.setSize(orX2/(scale*2), orX2/(scale*2));
@@ -230,7 +230,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 				disc.setPosition(player.getX() - disc.getWidth() / 2, 
 						player.getY()+player.getHeight()/2-disc.getHeight()/2);
 			}
-			else if (scenarioIndex ==0) {
+			else if (scenarioIndex ==2) {
 				defender.setSize(orX/scale, orY/scale);
 				player.setSize(orX/scale, orY/scale);
 				disc.setSize(orX2/(scale*2), orX2/(scale*2));
