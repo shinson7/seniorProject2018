@@ -105,7 +105,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
         player.setPosition(Gdx.graphics.getWidth() / 2 - player.getWidth() / 2,
                 Gdx.graphics.getHeight() / 2 - player.getHeight() / 2);
         defender.setPosition(player.getX() - 20, player.getY() - 20);
-        frisbee = new Texture("images/frisbee.jpg");
+        frisbee = new Texture("images/frisbee.png");
         disc = new Sprite(frisbee);
         orX2 = disc.getWidth();
         orY2 = disc.getHeight();
@@ -317,7 +317,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
                 player.setPosition(640 / 2 - player.getWidth() / 2,
                         480 / 2 - player.getHeight() / 2);
                 defender.setPosition(player.getX() - 20, player.getY() - 20);
-                disc.setSize(orX2 / (scale * 2), orX2 / (scale * 2));
+                disc.setSize(orX2 / (scale * 2), orY2 / (scale * 2));
                 disc.setPosition(player.getX() - disc.getWidth() / 2, player.getY() + player.getHeight() / 2 - disc.getHeight() / 2);
             } else if (scenarioIndex == 1) {
             	scale = 10;
@@ -328,7 +328,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
             	turfBack.setCenter(640 / 2, 480 / 2+100);
                 defender.setSize(orX / scale, orY / scale);
                 player.setSize(orX / scale, orY / scale);
-                disc.setSize(orX2 / (scale * 2), orX2 / (scale * 2));
+                disc.setSize(orX2 / (scale * 2), orY2 / (scale * 2));
                 player.setPosition(640 / 2 - player.getWidth() / 2,
                         480 / 2 - player.getHeight() / 2);
                 defender.setPosition(player.getX() + 20, player.getY() - 20);
@@ -342,7 +342,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 				turfBack.setCenter(640 / 2, 480 / 2+100);
 				defender.setSize(orX/scale, orY/scale);
 				player.setSize(orX/scale, orY/scale);
-				disc.setSize(orX2/(scale*2), orX2/(scale*2));
+				disc.setSize(orX2/(scale*2), orY2/(scale*2));
 				player.setPosition(640 / 2 - player.getWidth() / 2,
 						480 / 2 - player.getHeight() / 2);
 				defender.setPosition(player.getX()-20, player.getY()-20);
