@@ -90,7 +90,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
         // turfBack.setScale(0.125f);
         // turfBack.setPosition(-2275, -1400);
         turfBack.setSize(640 * 2, 480 * 2);
-        turfBack.setPosition(-640 / 2, -480 / 2);
+        turfBack.setPosition(-640 / 2, -480 / 2+100);
 
         defender = new Sprite(img2);
         defender.setSize(defender.getWidth() / scale, defender.getHeight() / scale);
