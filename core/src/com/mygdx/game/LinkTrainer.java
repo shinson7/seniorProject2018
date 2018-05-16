@@ -160,7 +160,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
                     defender.setSize((orX / scale), (orY / scale));
                     defender.setPosition(player.getX() + (200 / scale), player.getY() - (200 / scale));
                     turfBack.setSize(orX3 / scale, orY3 / scale);
-                    turfBack.setCenter(640 / 2, 480 / 2);
+                    turfBack.setCenter(640 / 2, 480 / 2+100);
                 } else if (angle < 400) {
                     angle += 5;
                     if (angle == 120) {
@@ -169,7 +169,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
                     player.setPosition((640 / 2 - player.getWidth() / 2) - angle, (480 / 2 - player.getHeight() / 2));
                     disc.setPosition((player.getX() - disc.getWidth() / 2), (480 / 2 - disc.getHeight() / 2));
                     defender.setPosition(player.getX() + (200 / scale), player.getY() - (200 / scale));
-                    turfBack.setCenter(640 / 2 - angle / 2, 480 / 2);
+                    turfBack.setCenter(640 / 2 - angle / 2, 480 / 2+100);
                 }
                 if (huck && thro < 200) {
                     thro += 5;
@@ -181,7 +181,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 				}
 				else if (huck && thro >= 500) {
 					turfBack.setSize(640 * 2, 480 * 2);
-					turfBack.setCenter(640/2, 480/2);
+					turfBack.setCenter(640/2, 480/2+100);
 					defender.setSize(orX/10, orY/10);
 					player.setSize(orX/10, orY/10);
 					disc.setSize(orX2/(10*2), orX2/(10*2));
@@ -202,7 +202,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 					disc.setPosition(player.getX() +player.getWidth()- disc.getWidth() / 2, 
 							player.getY()+player.getHeight()/2-disc.getHeight()/2);
 					defender.setPosition(player.getX()-(200/scale), player.getY()-(200/scale));
-					turfBack.setCenter(640 / 2 + angle, 480/2);
+					turfBack.setCenter(640 / 2 + angle, 480/2+100);
 					if (angle >= 149) {
 						angle = -1;
 					}
@@ -213,7 +213,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 					disc.setPosition(player.getX() +player.getWidth()- disc.getWidth() / 2, 
 							player.getY()+player.getHeight()/2-disc.getHeight()/2);
 					defender.setPosition(player.getX()-(200/scale), player.getY()-(200/scale));
-					turfBack.setCenter(640 / 2 +149+ angle, 480/2);
+					turfBack.setCenter(640 / 2 +149+ angle, 480/2+100);
 					if (angle < -200) {
 						huck = true;
 					}
@@ -231,7 +231,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 				}
 				else if (huck && thro >= 500) {
 					turfBack.setSize(640 * 2, 480 * 2);
-					turfBack.setCenter(640/2, 480/2);
+					turfBack.setCenter(640/2, 480/2+100);
 					defender.setSize(orX/10, orY/10);
 					player.setSize(orX/10, orY/10);
 					disc.setSize(orX2/(10*2), orX2/(10*2));
@@ -242,11 +242,14 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 							player.getY()+player.getHeight()/2-disc.getHeight()/2);
 				}
             }
+            else {
+            	turfBack.draw(batch);
+            }
             batch.end();
             render.begin(ShapeType.Filled);
             if (scenarioIndex == 1) {
                 render.setColor(1, 0, 0, 1);
-                render.rect(player.getX()-200/scale, 130, 5, 98);
+                render.rect(player.getX()-200/scale, 130, 5, 198);
             }
             if (scenarioIndex == 2) {
                 render.setColor(1, 0, 0, 1);
@@ -279,7 +282,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
             render.begin(ShapeType.Filled);
             if (scenarioIndex == 1) {
                 render.setColor(1, 0, 0, 1);
-                render.rect(player.getX()-200/scale, 130, 5, 98);
+                render.rect(player.getX()-200/scale, 130, 5, 198);
             }
             if (scenarioIndex == 2) {
                 render.setColor(1, 0, 0, 1);
@@ -308,7 +311,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
                 angle = 0;
                 thro = 0;
                 turfBack.setSize(640 * 2, 480 * 2);
-                turfBack.setCenter(640 / 2, 480 / 2);
+                turfBack.setCenter(640 / 2, 480 / 2+100);
                 defender.setSize(orX / scale, orY / scale);
                 player.setSize(orX / scale, orY / scale);
                 player.setPosition(640 / 2 - player.getWidth() / 2,
@@ -322,7 +325,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 				thro = 0;
 				huck = false;
             	turfBack.setSize(640 * 2, 480 * 2);
-            	turfBack.setCenter(640 / 2, 480 / 2);
+            	turfBack.setCenter(640 / 2, 480 / 2+100);
                 defender.setSize(orX / scale, orY / scale);
                 player.setSize(orX / scale, orY / scale);
                 disc.setSize(orX2 / (scale * 2), orX2 / (scale * 2));
@@ -336,7 +339,7 @@ public class LinkTrainer extends ApplicationAdapter implements InputProcessor {
 				thro = 0;
 				huck = false;
 				turfBack.setSize(640 * 2, 480 * 2);
-				turfBack.setCenter(640 / 2, 480 / 2);
+				turfBack.setCenter(640 / 2, 480 / 2+100);
 				defender.setSize(orX/scale, orY/scale);
 				player.setSize(orX/scale, orY/scale);
 				disc.setSize(orX2/(scale*2), orX2/(scale*2));
